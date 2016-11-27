@@ -10,10 +10,14 @@
         "name": "Marcel Timmermans",
         "email": "marcel@timmermans.us"
     },
+    "images": {
+		"large": "./assets/images/large.jpg",
+		"small": "./assets/images/small.jpg"
+	},
     "category": "tools",
 	"description": {
-		"en": "Free days conditions to use in your flows",
-		"nl": "Vrije dagen om te gebruiken in je flows"
+		"en": "Holidays conditions to use in your flows",
+		"nl": "Feestdagen om te gebruiken in je flows"
 	},
     "flow":{
  		"conditions": [{

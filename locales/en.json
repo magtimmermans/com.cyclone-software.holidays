@@ -1,0 +1,23 @@
+{
+  "newyearsDay" : "NewYears Day",
+  "goodfriday" : "Good Friday",
+  "eastern" : "Easter Day",
+  "easternMonday" : "Easter Monday",
+  "kingsDay" : "King's Birthday",
+  "remembranceDay" : "Remembrance Day",
+  "liberationDay" : "Liberation Day",
+  "carnaval" : "Carnaval",
+  "ascensionDay" : "Ascension Day",
+  "whitSunday" : "Whit Sunday",
+  "whitMonday" : "Whit Monday",
+  "sinterklaas" : "Sinterklaas",
+  "stNicholasDay" : "St Nicholas' Day",
+  "christmasEve" : "Christmas Eve",
+  "christmasDay" : "Christmas Day",
+  "secondDayofChristmas" : "Second Day of Christmas",
+  "newYearsEve" : "New Year's Eve",
+  "mothersDay" : "Mothers Day",
+  "fathersDay" : "Fathers Day",
+  "animalDay" : "Animal Day",
+  "valentinDay" : "Valentin Day"
+}

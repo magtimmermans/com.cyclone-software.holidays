@@ -1,0 +1,84 @@
+{
+    "id": "com.cyclone-software.holidays",
+    "name": {
+        "en": "Holidays",
+        "nl": "Vrije dagen"
+    },
+    "version": "0.0.1",
+    "compatibility": "1.x",
+    "author": {
+        "name": "Marcel Timmermans",
+        "email": "marcel@timmermans.us"
+    },
+    "category": "tools",
+	"description": {
+		"en": "Free days conditions to use in your flows",
+		"nl": "Vrije dagen om te gebruiken in je flows"
+	},
+    "flow":{
+ 		"conditions": [{
+			"id": "cond_nl_day_off",
+			"title": {
+				"en": "Dutch Holidays",
+				"nl": "Nederlandse feestdagen"
+			},
+			"args": [{
+				"name": "day",
+				"type": "autocomplete",
+				"placeholder": {
+					"en": "Free Day",
+					"nl": "Vrije Dag"
+				}
+				},
+                {
+				"name": "condition",
+				"type": "dropdown",
+				"values": [{
+					"id": ">",
+					"label": {
+						"en": "Later than today",
+						"nl": "Later dan vandaag"
+					}
+				}, {
+					"id": "<",
+					"label": {
+						"en": "Before today",
+						"nl": "Eerder dan vandaag"
+					}
+				}, {
+					"id": ">=",
+					"label": {
+						"en": "Later than today or today",
+						"nl": "Later dan, of vandaag"
+					}
+				}, {
+					"id": "<=",
+					"label": {
+						"en": "Before today or today",
+						"nl": "Eerder dan, of vandaag"
+					}
+				}, {
+					"id": "==",
+					"label": {
+						"en": "Today",
+						"nl": "Vandaag"
+					}
+				}, {
+					"id": "!=",
+					"label": {
+						"en": "Not today",
+						"nl": "Niet vandaag"
+					}
+				}]
+			}]
+		},			
+		{ 
+			"id": "cond_leapyear",
+			"title": {
+				"en": "It !{{is|isn't}} a Leapyear",
+				"nl": "Het !{{is|is niet}} een schrikkeljaar"
+			}
+		 }
+         ]       
+    }
+}

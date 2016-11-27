@@ -1,0 +1,23 @@
+{
+  "newyearsDay" : "Nieuwjaarsdag",
+  "goodfriday" : "Goede vrijdag",
+  "eastern" : "Pasen",
+  "easternMonday" : "Paasmaandag",
+  "kingsDay" : "Koningsdag",
+  "remembranceDay" : "Dodenherdenking",
+  "liberationDay" : "Bevrijdingsdag",
+  "ascensionDay" : "Hemelvaart",
+  "carnaval" : "Carnaval",
+  "whitSunday" : "Pinksteren",
+  "whitMonday" : "Pinkstermaandag",
+  "sinterklaas" : "Sinterklaas",
+  "stNicholasDay" : "Verjaardag Sinterklaas",
+  "christmasEve" : "Kerstavond",
+  "christmasDay" : "Eerste Kerstdag",
+  "secondDayofChristmas" : "Tweede Kerstdag",
+  "newYearsEve" : "Oudjaarsdag",
+  "mothersDay" : "Moederdag",
+  "fathersDay" : "Vaderdag",
+  "animalDay" : "Dierendag",
+  "valentinDay" : "Valentijnsdag"
+}

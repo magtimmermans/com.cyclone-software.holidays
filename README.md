@@ -3,9 +3,9 @@
 This app wil give you (currently) the Dutch Official holidays and some unofficial. The idea is to extend this with other countries as well.
 
 
-### Holiday Conditions
+## Holiday Conditions
 
-## Dutch Holidays Card
+### Dutch Holidays Card
 
 - NewYears Day
 - Good Friday
@@ -37,11 +37,11 @@ on every item above you can compare with the following Conditions:
 - Equal to Today
 - Not Equal to today
 
-## Leap Year Card
+### Leap Year Card
 This card is to detect if current year is a leap year or not.
 
 
-### V 0.0.1
+## V 0.0.1
 First experimental release
 
 

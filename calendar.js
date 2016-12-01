@@ -88,7 +88,13 @@ var calendar = {
     },
     valentinDay: function() {
         return moment([this.year,1,14]);
-    }
+    },
+    startSummerTime: function() {
+        return moment([this.year,3,7]).day(-7);
+    },
+    startWinterTime: function() {
+        return moment([this.year,10,7]).day(-7);
+    }    
 
 }
 

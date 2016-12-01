@@ -1,15 +1,17 @@
 {
-    "id": "com.cyclone-software.holidays",
+    "$schema" : "https://raw.githubusercontent.com/tmsns/homey-json-schema/master/schema.json",
+	"id": "com.cyclone-software.holidays",
     "name": {
         "en": "Holidays",
         "nl": "Vrije dagen"
     },
-    "version": "0.0.1",
+    "version": "0.0.2",
     "compatibility": "1.x",
     "author": {
         "name": "Marcel Timmermans",
         "email": "marcel@timmermans.us"
     },
+	
     "images": {
 		"large": "./assets/images/large.jpg",
 		"small": "./assets/images/small.jpg"

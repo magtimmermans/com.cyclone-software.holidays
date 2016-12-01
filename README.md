@@ -28,6 +28,8 @@ This app wil give you (currently) the Dutch Official holidays and some unofficia
 - Fathers Day
 - Animal Day
 - Valentin Day
+- Start Summer Time
+- Start Winter Time
 
 on every item above you can compare with the following Conditions:
 - Later than today
@@ -40,6 +42,8 @@ on every item above you can compare with the following Conditions:
 ### Leap Year Card
 This card is to detect if current year is a leap year or not.
 
+## V 0.0.2
+Added start of winter- and summertime.
 
 ## V 0.0.1
 First experimental release

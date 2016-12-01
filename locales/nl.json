@@ -19,5 +19,7 @@
   "mothersDay" : "Moederdag",
   "fathersDay" : "Vaderdag",
   "animalDay" : "Dierendag",
-  "valentinDay" : "Valentijnsdag"
+  "valentinDay" : "Valentijnsdag",
+  "startSummerTime" : "Start Zomertijd",
+  "startWinterTime" : "Start Wintertijd"
 }

@@ -19,5 +19,7 @@
   "mothersDay" : "Mothers Day",
   "fathersDay" : "Fathers Day",
   "animalDay" : "Animal Day",
-  "valentinDay" : "Valentin Day"
-}
+  "valentinDay" : "Valentin Day",
+  "startSummerTime" : "Start SummerTime",
+  "startWinterTime" : "Start WinterTime"
+  }

@@ -6,6 +6,42 @@ var calendar = {
     newYearsDay: function() {
         return moment({ y: this.year, M: 0, d: 1 });
     },
+    JanuarySecond: function() {
+        return moment({ y: this.year, M: 0, d: 2 });
+    },
+    StPatricksDay: function() {
+        return moment({ y: this.year, M: 2, d: 17 });
+    },
+    earlyMayBankHoliday: function() {
+        return moment([this.year, 4, 6]).day(1); // first monday in may
+    },
+    springBankHoliday: function() {
+        return moment([this.year, 4, 29]).day(1); // last monday in may
+    },
+    stGeorgesDay: function() {
+        return moment([this.year, 3, 23]); 
+    },
+    battleoftheBoyne : function() {
+        return moment([this.year, 6, 12]); 
+    },
+    earlySummerBankHoliday: function() {
+        return moment([this.year, 7, 6]).day(1); // first monday in may
+    },
+    summerBankHoliday: function() {
+        return moment([this.year, 7, 30]).day(1); // last monday in may
+    },
+    guyFawkesNight: function() {
+        return moment([this.year, 10, 5]); 
+    },
+    remembranceSunday: function() {
+        return moment([this.year, 10, 14]).day(0);
+    },
+    stAndrewsDay: function() {
+        return moment([this.year, 10, 30])
+    },
+    halloween: function() {
+        return moment([this.year, 9, 31])
+    },
     eastern: function() {
         var C = Math.floor(this.year / 100);
         var N = this.year - 19 * Math.floor(this.year / 19);

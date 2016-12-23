@@ -42,6 +42,9 @@ on every item above you can compare with the following Conditions:
 ### Leap Year Card
 This card is to detect if current year is a leap year or not.
 
+## V 0.0.3
+Added UK holidays
+
 ## V 0.0.2
 Added start of winter- and summertime.
 

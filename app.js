@@ -4,11 +4,12 @@ const cal = require('./calendar').calendar;
 const holidayObj = require('./holidayObj').holidayObj;
 const moment = require('moment');
 
-var nlDays = [];
+var Days = [];
 
 function init() {
 
-    nlDays=getNLDays();
+    Days['nl']=getNLDays();
+    Days['uk']=getUKDays();
 
     Homey.log("Holidays");
 
@@ -19,7 +20,7 @@ function init() {
         var myItems = [];
 
        // for(var item in nlDays){
-       nlDays.forEach(function(item){
+       Days['nl'].forEach(function(item){
             var e = {};
         	e.name = item.text;
         	e.id = item.id;
@@ -38,7 +39,7 @@ function init() {
     Homey.manager('flow').on('condition.cond_nl_day_off', function(callback, args) {
         Homey.log('condition');
         Homey.log(args);
-        var hObj = nlDays.filter(function(item) {
+        var hObj = Days['nl'].filter(function(item) {
             return item.id == args.day.id;
         });
         var result = testCondition(args.condition,hObj[0].when);
@@ -46,6 +47,40 @@ function init() {
         callback(null, result );
     });
 
+   // ******************** UK ******************
+    Homey.manager('flow').on('condition.cond_uk_day_off.day.autocomplete', function(callback, args) {
+        // console.log('autocomplete');
+        // console.log(args);
+
+        var myItems = [];
+
+       // for(var item in nlDays){
+      Days['uk'].forEach(function(item){
+            var e = {};
+        	e.name = item.text;
+        	e.id = item.id;
+        	myItems.push(e);
+        });
+
+        myItems.sort(function(a,b){
+            if(a.name < b.name) return -1;
+            if(a.name > b.name) return 1;
+            return 0;            
+        })
+
+        callback(null, myItems); // err, results
+    });
+
+    Homey.manager('flow').on('condition.cond_uk_day_off', function(callback, args) {
+        Homey.log('condition');
+        Homey.log(args);
+        var hObj = Days['uk'].filter(function(item) {
+            return item.id == args.day.id;
+        });
+        var result = testCondition(args.condition,hObj[0].when);
+        Homey.log(result);
+        callback(null, result );
+    });
     Homey.manager('flow').on('condition.cond_leapyear', function(callback, args) {
         callback(null, cal.leapYear());
     });
@@ -93,6 +128,35 @@ function getNLDays() {
     items.push(new holidayObj("valentinDay",cal.valentinDay()));
     items.push(new holidayObj("startSummerTime",cal.startSummerTime()));
     items.push(new holidayObj("startWinterTime",cal.startWinterTime()));
+   
+    //console.log(items);
+    return items;
+}
+
+function getUKDays() {
+    var items = [];
+
+    items.push(new holidayObj("newYearsEve",cal.newYearsEve()));
+    items.push(new holidayObj("newyearsDay",cal.newYearsDay()));
+    items.push(new holidayObj("januarySecond",cal.JanuarySecond()));  
+    items.push(new holidayObj("stPatricksDay",cal.StPatricksDay));
+    items.push(new holidayObj("goodfriday",cal.goodFriday()));
+    items.push(new holidayObj("eastern",cal.eastern()));
+    items.push(new holidayObj("easternMonday",cal.easternMonday()));
+    items.push(new holidayObj("stGeorgesDay",cal.stGeorgesDay()));
+    items.push(new holidayObj("earlyMaybBankHoliday",cal.earlyMayBankHoliday()));
+    items.push(new holidayObj("springBankHoliday",cal.springBankHoliday()));
+    items.push(new holidayObj("battleoftheBoyne",cal.battleoftheBoyne()));
+    items.push(new holidayObj("earlySummerBankHoliday",cal.earlySummerBankHoliday()));
+    items.push(new holidayObj("summerBankHoliday",cal.summerBankHoliday()));
+    items.push(new holidayObj("halloween",cal.halloween()));
+    items.push(new holidayObj("guyFawkesNight",cal.guyFawkesNight()));
+    items.push(new holidayObj("remembranceDay",cal.remembranceDay()));
+    items.push(new holidayObj("stAndrewsDay",cal.stAndrewsDay()));
+    items.push(new holidayObj("christmasEve",cal.christmasEve()));
+    items.push(new holidayObj("christmasDay",cal.christmasDay()));
+    items.push(new holidayObj("secondDayofChristmas",cal.secondDaychristmasDay()));
+
    
     //console.log(items);
     return items;

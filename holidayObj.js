@@ -1,3 +1,4 @@
+const Homey = require('homey');
 const moment = require("moment");
 
 
@@ -6,7 +7,7 @@ const holidayObj = function(id,when) {
 
     var obj = {}
     obj.id=id;
-    obj.text = __(id);
+    obj.text = Homey.__(id);
     obj.when = when;
 
     return obj;

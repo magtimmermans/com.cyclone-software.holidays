@@ -1,23 +1,44 @@
 "use strict";
 
+const Homey = require('homey');
 const cal = require('./calendar').calendar;
 const holidayObj = require('./holidayObj').holidayObj;
 const moment = require('moment');
 
 var Days = [];
 
-function init() {
+const nlDayOff = new Homey.FlowCardCondition('cond_nl_day_off');
+const ukDayOff = new Homey.FlowCardCondition('cond_uk_day_off');
+
+class holidaysApp extends Homey.App {
+
+  onInit() {
 
     Days['nl']=getNLDays();
     Days['uk']=getUKDays();
 
-    Homey.log("Holidays");
+    console.log("Holidays");
 
-    Homey.manager('flow').on('condition.cond_nl_day_off.day.autocomplete', function(callback, args) {
-        // console.log('autocomplete');
+    nlDayOff
+    .register()
+    .registerRunListener(( args, state ) => {
+        // console.log('sun event listner');
         // console.log(args);
-
-        var myItems = [];
+        // console.log(state);
+        console.log('condition');
+        console.log(args);
+        var hObj = Days['nl'].filter(function(item) {
+            return item.id == args.day.id;
+        });
+        var result = testCondition(args.condition,hObj[0].when);
+        console.log(result);
+        return Promise.resolve( result );
+     })
+    .getArgument('day')
+    .registerAutocompleteListener(( query, args ) => {
+       // console.log('autocomplete trigger');
+       // console.log(args);
+       var myItems = [];
 
        // for(var item in nlDays){
        Days['nl'].forEach(function(item){
@@ -33,29 +54,32 @@ function init() {
             return 0;            
         })
 
-        callback(null, myItems); // err, results
-    });
+       return Promise.resolve(myItems);
+    })
 
-    Homey.manager('flow').on('condition.cond_nl_day_off', function(callback, args) {
-        Homey.log('condition');
-        Homey.log(args);
-        var hObj = Days['nl'].filter(function(item) {
+    ukDayOff
+    .register()
+    .registerRunListener(( args, state ) => {
+        // console.log('sun event listner');
+        // console.log(args);
+        // console.log(state);
+        console.log('condition');
+        console.log(args);
+        var hObj = Days['uk'].filter(function(item) {
             return item.id == args.day.id;
         });
         var result = testCondition(args.condition,hObj[0].when);
-        Homey.log(result);
-        callback(null, result );
-    });
-
-   // ******************** UK ******************
-    Homey.manager('flow').on('condition.cond_uk_day_off.day.autocomplete', function(callback, args) {
-        // console.log('autocomplete');
-        // console.log(args);
-
-        var myItems = [];
+        console.log(result);
+        return Promise.resolve( result );
+     })
+    .getArgument('day')
+    .registerAutocompleteListener(( query, args ) => {
+       // console.log('autocomplete trigger');
+       // console.log(args);
+       var myItems = [];
 
        // for(var item in nlDays){
-      Days['uk'].forEach(function(item){
+       Days['uk'].forEach(function(item){
             var e = {};
         	e.name = item.text;
         	e.id = item.id;
@@ -68,22 +92,9 @@ function init() {
             return 0;            
         })
 
-        callback(null, myItems); // err, results
-    });
-
-    Homey.manager('flow').on('condition.cond_uk_day_off', function(callback, args) {
-        Homey.log('condition');
-        Homey.log(args);
-        var hObj = Days['uk'].filter(function(item) {
-            return item.id == args.day.id;
-        });
-        var result = testCondition(args.condition,hObj[0].when);
-        Homey.log(result);
-        callback(null, result );
-    });
-    Homey.manager('flow').on('condition.cond_leapyear', function(callback, args) {
-        callback(null, cal.leapYear());
-    });
+       return Promise.resolve(myItems);
+    })
+  }
 }
 
 function testCondition(condition, matchDate) {
@@ -163,4 +174,4 @@ function getUKDays() {
 }
 
 
-module.exports.init = init;
+module.exports = holidaysApp;

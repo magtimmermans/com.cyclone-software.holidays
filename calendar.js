@@ -42,6 +42,9 @@ var calendar = {
     halloween: function() {
         return moment([this.year, 9, 31])
     },
+    threeKingsDay: function() {
+        return moment([this.year, 1, 6])
+    },
     eastern: function() {
         var C = Math.floor(this.year / 100);
         var N = this.year - 19 * Math.floor(this.year / 19);

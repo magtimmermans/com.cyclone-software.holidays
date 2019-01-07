@@ -139,6 +139,7 @@ function getNLDays() {
     items.push(new holidayObj("valentinDay",cal.valentinDay()));
     items.push(new holidayObj("startSummerTime",cal.startSummerTime()));
     items.push(new holidayObj("startWinterTime",cal.startWinterTime()));
+    items.push(new holidayObj("threeKingsDay",cal.threeKingsDay()));
    
     //console.log(items);
     return items;

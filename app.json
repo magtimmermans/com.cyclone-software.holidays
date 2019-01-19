@@ -5,8 +5,16 @@
         "en": "Holidays",
         "nl": "Vrije dagen"
     },
-    "version": "0.1.0",
+    "version": "0.1.1",
 	"compatibility": ">=1.5.0",
+    "brandColor": "#E8461D",
+    "contributing": {
+        "donate": {
+            "paypal": {
+                "username": "marceltimmermans"
+            }
+        }
+    },
     "author": {
         "name": "Marcel Timmermans",
         "email": "marcel@timmermans.us"

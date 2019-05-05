@@ -133,7 +133,10 @@ var calendar = {
     },
     startWinterTime: function() {
         return moment([this.year,10,7]).day(-7);
-    }    
+    },
+    testTime: function() {
+        return moment([this.year,5,5]);
+    }     
 
 }
 

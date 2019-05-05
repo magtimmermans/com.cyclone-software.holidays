@@ -9,6 +9,8 @@ var Days = [];
 
 const nlDayOff = new Homey.FlowCardCondition('cond_nl_day_off');
 const ukDayOff = new Homey.FlowCardCondition('cond_uk_day_off');
+const leapDay = new Homey.FlowCardCondition('cond_leapyear');
+const officalHoliday = new Homey.FlowCardCondition("cond_official_nl_holiday");
 
 class holidaysApp extends Homey.App {
 
@@ -94,6 +96,25 @@ class holidaysApp extends Homey.App {
 
        return Promise.resolve(myItems);
     })
+
+    leapDay
+    .register()
+    .registerRunListener(( args, state ) => {
+        return Promise.resolve( moment().isLeapYear() );
+    })
+
+    officalHoliday
+    .register()
+    .registerRunListener(( args, state ) => {
+        let holiday = false;
+        var today = moment().startOf('day');
+        OfficialNLHolidays().forEach(function(item){
+            if (item.when.isSame(today)) {
+                holiday=true;
+            }
+        });
+        return Promise.resolve(holiday);
+    })
   }
 }
 
@@ -112,6 +133,23 @@ function testCondition(condition, matchDate) {
 		}
 }
 
+function OfficialNLHolidays()
+{
+    var items=[];
+    items.push(new holidayObj("newyearsDay",cal.newYearsDay()));
+    items.push(new holidayObj("goodfriday",cal.goodFriday()));
+    items.push(new holidayObj("eastern",cal.eastern()));
+    items.push(new holidayObj("easternMonday",cal.easternMonday()));
+    items.push(new holidayObj("kingsDay",cal.kingsDay()));
+    items.push(new holidayObj("liberationDay",cal.liberationDay()));
+    items.push(new holidayObj("ascensionDay",cal.ascensionDay()));
+    items.push(new holidayObj("whitSunday",cal.whiteSunday()));
+    items.push(new holidayObj("whitMonday",cal.whiteMonday()));
+    items.push(new holidayObj("christmasDay",cal.christmasDay()));
+    items.push(new holidayObj("secondDayofChristmas",cal.secondDaychristmasDay()));
+    //console.log(items);
+    return items;   
+}
 
 function getNLDays() {
     var items = [];

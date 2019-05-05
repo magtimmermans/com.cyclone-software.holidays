@@ -42,6 +42,9 @@ on every item above you can compare with the following Conditions:
 ### Leap Year Card
 This card is to detect if current year is a leap year or not.
 
+## V 0.1.1 
+Add condition to test of official NL Holidays and fixed Leap Year Bug.
+
 ## V 0.1.0
 Convert to SDK 2 and make it compatible with Homey V2.
 

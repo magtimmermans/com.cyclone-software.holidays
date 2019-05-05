@@ -148,6 +148,13 @@
 				"en": "It !{{is|isn't}} a Leapyear",
 				"nl": "Het !{{is|is niet}} een schrikkeljaar"
 			}
+		 },
+		 { 
+			"id": "cond_official_nl_holiday",
+			"title": {
+				"en": "It !{{is|isn't}} a Official Dutch Holiday",
+				"nl": "Het !{{is|is niet}} een wettelijke feestdag"
+			}
 		 }
          ]       
     }

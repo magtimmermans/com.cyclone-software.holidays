@@ -141,7 +141,63 @@
 					}
 				}]
 			}]
-		},			
+		},
+		{
+			"id": "cond_no_day_off",
+			"title": {
+				"en": "NO Holidays",
+				"nl": "NO feestdagen"
+			},
+			"args": [{
+				"name": "day",
+				"type": "autocomplete",
+				"placeholder": {
+					"en": "Free Day",
+					"nl": "Vrije Dag"
+				}
+				},
+                {
+				"name": "condition",
+				"type": "dropdown",
+				"values": [{
+					"id": ">",
+					"label": {
+						"en": "Later than today",
+						"nl": "Later dan vandaag"
+					}
+				}, {
+					"id": "<",
+					"label": {
+						"en": "Before today",
+						"nl": "Eerder dan vandaag"
+					}
+				}, {
+					"id": ">=",
+					"label": {
+						"en": "Later than today or today",
+						"nl": "Later dan, of vandaag"
+					}
+				}, {
+					"id": "<=",
+					"label": {
+						"en": "Before today or today",
+						"nl": "Eerder dan, of vandaag"
+					}
+				}, {
+					"id": "==",
+					"label": {
+						"en": "Today",
+						"nl": "Vandaag"
+					}
+				}, {
+					"id": "!=",
+					"label": {
+						"en": "Not today",
+						"nl": "Niet vandaag"
+					}
+				}]
+			}]
+		},					
 		{ 
 			"id": "cond_leapyear",
 			"title": {

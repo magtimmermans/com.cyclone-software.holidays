@@ -9,6 +9,7 @@ var Days = [];
 
 const nlDayOff = new Homey.FlowCardCondition('cond_nl_day_off');
 const ukDayOff = new Homey.FlowCardCondition('cond_uk_day_off');
+const noDayOff = new Homey.FlowCardCondition('cond_no_day_off');
 const leapDay = new Homey.FlowCardCondition('cond_leapyear');
 const officalHoliday = new Homey.FlowCardCondition("cond_official_nl_holiday");
 
@@ -18,6 +19,7 @@ class holidaysApp extends Homey.App {
 
     Days['nl']=getNLDays();
     Days['uk']=getUKDays();
+    Days['no']=getNODays();
 
     console.log("Holidays");
 
@@ -96,6 +98,45 @@ class holidaysApp extends Homey.App {
 
        return Promise.resolve(myItems);
     })
+
+    noDayOff
+    .register()
+    .registerRunListener(( args, state ) => {
+        // console.log('sun event listner');
+        // console.log(args);
+        // console.log(state);
+        console.log('condition');
+        console.log(args);
+        var hObj = Days['no'].filter(function(item) {
+            return item.id == args.day.id;
+        });
+        var result = testCondition(args.condition,hObj[0].when);
+        console.log(result);
+        return Promise.resolve( result );
+     })
+    .getArgument('day')
+    .registerAutocompleteListener(( query, args ) => {
+       // console.log('autocomplete trigger');
+       // console.log(args);
+       var myItems = [];
+
+       // for(var item in nlDays){
+       Days['no'].forEach(function(item){
+            var e = {};
+        	e.name = item.text;
+        	e.id = item.id;
+        	myItems.push(e);
+        });
+
+        myItems.sort(function(a,b){
+            if(a.name < b.name) return -1;
+            if(a.name > b.name) return 1;
+            return 0;            
+        })
+
+       return Promise.resolve(myItems);
+    })
+
 
     leapDay
     .register()
@@ -207,6 +248,32 @@ function getUKDays() {
     items.push(new holidayObj("christmasDay",cal.christmasDay()));
     items.push(new holidayObj("secondDayofChristmas",cal.secondDaychristmasDay()));
 
+   
+    //console.log(items);
+    return items;
+}
+
+function getNODays() {
+    var items = [];
+
+    items.push(new holidayObj("newyearsDay",cal.newYearsDay()));
+    items.push(new holidayObj("eastern",cal.eastern()));
+    items.push(new holidayObj("easternMonday",cal.easternMonday()));
+    items.push(new holidayObj("goodfriday",cal.goodFriday()));
+    items.push(new holidayObj("ascensionDay",cal.ascensionDay()));
+    items.push(new holidayObj("whitSunday",cal.whiteSunday()));
+    items.push(new holidayObj("whitMonday",cal.whiteMonday()));
+    items.push(new holidayObj("christmasEve",cal.christmasEve()));
+    items.push(new holidayObj("christmasDay",cal.christmasDay()));
+    items.push(new holidayObj("secondDayofChristmas",cal.secondDaychristmasDay()));
+    items.push(new holidayObj("newYearsEve",cal.newYearsEve()));
+    items.push(new holidayObj("mothersDay",cal.mothersDayNorway()));
+    items.push(new holidayObj("fathersDay",cal.fathersDayNorway()));
+    items.push(new holidayObj("valentinDay",cal.valentinDay()));
+    items.push(new holidayObj("startSummerTime",cal.startSummerTime()));
+    items.push(new holidayObj("startWinterTime",cal.startWinterTime()));
+    items.push(new holidayObj("constitutionDayNorway",cal.constitutionDayNorway()));
+    items.push(new holidayObj("sintOlafDayNorway",cal.sintOlafNorway()));
    
     //console.log(items);
     return items;

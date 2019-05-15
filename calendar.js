@@ -116,8 +116,14 @@ var calendar = {
     mothersDay: function() {
         return moment([this.year,4,7]).day(7);
     },
+    mothersDayNorway: function() {
+        return moment([this.year, 1, 6]).day(7);
+    },
     fathersDay: function() {
         return moment([this.year,5,7]).day(14);
+    },
+    fathersDayNorway: function() {
+        return moment([this.year,10,6]).day(7);
     },
     animalDay: function() {
         return moment([this.year,9,4]);
@@ -133,6 +139,12 @@ var calendar = {
     },
     startWinterTime: function() {
         return moment([this.year,10,7]).day(-7);
+    },
+    sintOlafNorway: function() {
+        return moment([this.year,6,29]).day(-7);
+    },
+    constitutionDayNorway: function() {
+        return moment([this.year,4,17]);
     },
     testTime: function() {
         return moment([this.year,5,5]);

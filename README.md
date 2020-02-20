@@ -1,9 +1,14 @@
 # Holidays
 
-This app wil give you (currently) the Dutch Official holidays and some unofficial. The idea is to extend this with other countries as well.
+This app wil give you (currently) the official holidays and some unofficial. The idea is to extend this with other countries as well.
+Current available countries:
+- Netherlands
+- United Kingdom
+- Norway
+- Belgium
 
 
-## Holiday Conditions
+## Holidays
 
 ### Dutch Holidays Card
 
@@ -31,6 +36,12 @@ This app wil give you (currently) the Dutch Official holidays and some unofficia
 - Start Summer Time
 - Start Winter Time
 
+### Belgian Holidays Card
+
+https://www.wettelijke-feestdagen.be/
+
+### Conditions
+
 on every item above you can compare with the following Conditions:
 - Later than today
 - Before today
@@ -41,6 +52,9 @@ on every item above you can compare with the following Conditions:
 
 ### Leap Year Card
 This card is to detect if current year is a leap year or not.
+
+## V 0.1.2 
+Added BE holidays.
 
 ## V 0.1.1 
 Add condition to test of official NL Holidays and fixed Leap Year Bug.

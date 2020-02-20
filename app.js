@@ -10,8 +10,10 @@ var Days = [];
 const nlDayOff = new Homey.FlowCardCondition('cond_nl_day_off');
 const ukDayOff = new Homey.FlowCardCondition('cond_uk_day_off');
 const noDayOff = new Homey.FlowCardCondition('cond_no_day_off');
+const beDayOff = new Homey.FlowCardCondition('cond_be_day_off');
 const leapDay = new Homey.FlowCardCondition('cond_leapyear');
 const officalHoliday = new Homey.FlowCardCondition("cond_official_nl_holiday");
+const officalHolidayBe = new Homey.FlowCardCondition("cond_official_be_holiday");
 
 class holidaysApp extends Homey.App {
 
@@ -20,6 +22,7 @@ class holidaysApp extends Homey.App {
     Days['nl']=getNLDays();
     Days['uk']=getUKDays();
     Days['no']=getNODays();
+    Days['be']=getBEDays();
 
     console.log("Holidays");
 
@@ -137,6 +140,44 @@ class holidaysApp extends Homey.App {
        return Promise.resolve(myItems);
     })
 
+    beDayOff
+    .register()
+    .registerRunListener(( args, state ) => {
+        // console.log('sun event listner');
+        // console.log(args);
+        // console.log(state);
+        console.log('condition');
+        console.log(args);
+        var hObj = Days['be'].filter(function(item) {
+            return item.id == args.day.id;
+        });
+        var result = testCondition(args.condition,hObj[0].when);
+        console.log(result);
+        return Promise.resolve( result );
+     })
+    .getArgument('day')
+    .registerAutocompleteListener(( query, args ) => {
+       // console.log('autocomplete trigger');
+       // console.log(args);
+       var myItems = [];
+
+       // for(var item in nlDays){
+       Days['be'].forEach(function(item){
+            var e = {};
+        	e.name = item.text;
+        	e.id = item.id;
+        	myItems.push(e);
+        });
+
+        myItems.sort(function(a,b){
+            if(a.name < b.name) return -1;
+            if(a.name > b.name) return 1;
+            return 0;            
+        })
+
+       return Promise.resolve(myItems);
+    })
+
 
     leapDay
     .register()
@@ -150,6 +191,19 @@ class holidaysApp extends Homey.App {
         let holiday = false;
         var today = moment().startOf('day');
         OfficialNLHolidays().forEach(function(item){
+            if (item.when.isSame(today)) {
+                holiday=true;
+            }
+        });
+        return Promise.resolve(holiday);
+    })
+
+    officalHolidayBe
+    .register()
+    .registerRunListener(( args, state ) => {
+        let holiday = false;
+        var today = moment().startOf('day');
+        OfficialBEHolidays().forEach(function(item){
             if (item.when.isSame(today)) {
                 holiday=true;
             }
@@ -192,6 +246,24 @@ function OfficialNLHolidays()
     return items;   
 }
 
+function OfficialBEHolidays()
+{
+    var items=[];
+    items.push(new holidayObj("newyearsDay",cal.newYearsDay()));
+    items.push(new holidayObj("eastern",cal.eastern()));
+    items.push(new holidayObj("easternMonday",cal.easternMonday()));
+    items.push(new holidayObj("labourDay",cal.labourDay()));
+    items.push(new holidayObj("ascensionDay",cal.ascensionDay()));
+    items.push(new holidayObj("whitSunday",cal.whiteSunday()));
+    items.push(new holidayObj("whitMonday",cal.whiteMonday()));
+    items.push(new holidayObj("assumptionofMaryDay",cal.assumptionofMaryDay()));
+    items.push(new holidayObj("allSaintsDay",cal.assumptionofMaryDay()));
+    items.push(new holidayObj("armisticeDay",cal.armisticeDay()));
+    items.push(new holidayObj("christmasDay",cal.christmasDay()));
+    //console.log(items);
+    return items;   
+}
+
 function getNLDays() {
     var items = [];
 
@@ -219,6 +291,54 @@ function getNLDays() {
     items.push(new holidayObj("startSummerTime",cal.startSummerTime()));
     items.push(new holidayObj("startWinterTime",cal.startWinterTime()));
     items.push(new holidayObj("threeKingsDay",cal.threeKingsDay()));
+   
+    //console.log(items);
+    return items;
+}
+
+function getBEDays() {
+    var items = [];
+	
+	// Official holidays
+    items.push(new holidayObj("newyearsDay",cal.newYearsDay()));
+    items.push(new holidayObj("eastern",cal.eastern()));
+    items.push(new holidayObj("easternMonday",cal.easternMonday()));
+    items.push(new holidayObj("labourDay",cal.labourDay()));
+    items.push(new holidayObj("ascensionDay",cal.ascensionDay()));
+    items.push(new holidayObj("whitSunday",cal.whiteSunday()));
+    items.push(new holidayObj("whitMonday",cal.whiteMonday()));
+    items.push(new holidayObj("assumptionofMaryDay",cal.assumptionofMaryDay()));
+    items.push(new holidayObj("allSaintsDay",cal.assumptionofMaryDay()));
+    items.push(new holidayObj("armisticeDay",cal.armisticeDay()));
+    items.push(new holidayObj("christmasDay",cal.christmasDay()));
+	
+	// Non official Belgian holidays (only some people get these e.g. employees of the belgian government)
+    items.push(new holidayObj("dynastyDay",cal.dynastyDay()));
+	
+	// Non official Flemish holidays (only some people get these e.g. employees of the flemish government)
+    items.push(new holidayObj("flemishDay",cal.flemishDay()));
+	
+	// Non official Walloon holidays (only some people get these e.g. employees of the walloon government)
+    items.push(new holidayObj("walloonDay",cal.walloonDay()));
+	
+	// Non official Brussels holidays (only some people get these e.g. employees of the Brussels government)
+    items.push(new holidayObj("brusselsDay",cal.walloonDay()));
+	
+	// Other non official
+    items.push(new holidayObj("allSoulsDay",cal.allSoulsDay()));
+    items.push(new holidayObj("valentinDay",cal.valentinDay()));
+    items.push(new holidayObj("startSummerTime",cal.startSummerTime()));
+    items.push(new holidayObj("startWinterTime",cal.startWinterTime()));
+    items.push(new holidayObj("sinterklaas",cal.stNicholasDayBe()));
+    items.push(new holidayObj("stmaarten",cal.stMaarten()));
+    items.push(new holidayObj("mothersDayBe",cal.mothersDayBe()));
+    items.push(new holidayObj("fathersDayBe",cal.fathersDayBe()));
+    items.push(new holidayObj("mothersDayBeAntwerp",cal.mothersDayBeAntwerp()));
+    items.push(new holidayObj("fathersDayBeAntwerp",cal.fathersDayBeAntwerp()));
+    items.push(new holidayObj("christmasEve",cal.christmasEve()));
+    items.push(new holidayObj("newYearsEve",cal.newYearsEve()));
+    items.push(new holidayObj("halloweenBe",cal.halloweenBe()));
+	
    
     //console.log(items);
     return items;

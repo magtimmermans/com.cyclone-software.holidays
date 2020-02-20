@@ -5,7 +5,7 @@
         "en": "Holidays",
         "nl": "Vrije dagen"
     },
-    "version": "0.1.1",
+    "version": "0.1.2",
 	"compatibility": ">=1.5.0",
     "brandColor": "#E8461D",
     "contributing": {
@@ -197,7 +197,63 @@
 					}
 				}]
 			}]
-		},					
+		},
+		{
+			"id": "cond_be_day_off",
+			"title": {
+				"en": "BE Holidays",
+				"nl": "BE feestdagen"
+			},
+			"args": [{
+				"name": "day",
+				"type": "autocomplete",
+				"placeholder": {
+					"en": "Free Day",
+					"nl": "Vrije Dag"
+				}
+				},
+                {
+				"name": "condition",
+				"type": "dropdown",
+				"values": [{
+					"id": ">",
+					"label": {
+						"en": "Later than today",
+						"nl": "Later dan vandaag"
+					}
+				}, {
+					"id": "<",
+					"label": {
+						"en": "Before today",
+						"nl": "Eerder dan vandaag"
+					}
+				}, {
+					"id": ">=",
+					"label": {
+						"en": "Later than today or today",
+						"nl": "Later dan, of vandaag"
+					}
+				}, {
+					"id": "<=",
+					"label": {
+						"en": "Before today or today",
+						"nl": "Eerder dan, of vandaag"
+					}
+				}, {
+					"id": "==",
+					"label": {
+						"en": "Today",
+						"nl": "Vandaag"
+					}
+				}, {
+					"id": "!=",
+					"label": {
+						"en": "Not today",
+						"nl": "Niet vandaag"
+					}
+				}]
+			}]
+		},		
 		{ 
 			"id": "cond_leapyear",
 			"title": {
@@ -208,8 +264,15 @@
 		 { 
 			"id": "cond_official_nl_holiday",
 			"title": {
-				"en": "It !{{is|isn't}} a Official Dutch Holiday",
+				"en": "It !{{is|isn't}} an official Dutch Holiday",
 				"nl": "Het !{{is|is niet}} een wettelijke feestdag"
+			}
+		 },
+		 { 
+			"id": "cond_official_be_holiday",
+			"title": {
+				"en": "It !{{is|isn't}} an official Belgian Holiday",
+				"nl": "Het !{{is een|is geen}} wettelijke Belgische feestdag"
 			}
 		 }
          ]       

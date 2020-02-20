@@ -42,6 +42,9 @@ var calendar = {
     halloween: function() {
         return moment([this.year, 9, 31])
     },
+    halloweenBe: function() {
+        return moment([this.year, 10, 31])
+    },
     threeKingsDay: function() {
         return moment([this.year, 1, 6])
     },
@@ -119,11 +122,23 @@ var calendar = {
     mothersDayNorway: function() {
         return moment([this.year, 1, 6]).day(7);
     },
+    mothersDayBe: function() {
+        return moment({ y: this.year, M: 5, d: 10 });
+    },
+    mothersDayAntwerp: function() {
+        return moment({ y: this.year, M: 8, d: 15 });
+    },
     fathersDay: function() {
         return moment([this.year,5,7]).day(14);
     },
     fathersDayNorway: function() {
         return moment([this.year,10,6]).day(7);
+    },
+    fathersDayBe: function() {
+        return moment({ y: this.year, M: 6, d: 14 });
+    },
+    fathersDayBeAntwerp: function() {
+        return moment({ y: this.year, M: 3, d: 19 });
     },
     animalDay: function() {
         return moment([this.year,9,4]);
@@ -145,6 +160,45 @@ var calendar = {
     },
     constitutionDayNorway: function() {
         return moment([this.year,4,17]);
+    },
+    belgianNationalDay: function() {
+        return moment({ y: this.year, M: 7, d: 21 });
+    },
+    labourDay: function() {
+        return moment({ y: this.year, M: 5, d: 1 });
+    },
+    assumptionofMaryDay: function() {
+        return moment({ y: this.year, M: 8, d: 15 });
+    },
+    allSaintsDay: function() {
+        return moment({ y: this.year, M: 11, d: 1 });
+    },
+    armisticeDay: function() {
+        return moment({ y: this.year, M: 11, d: 11 });
+    },
+    flemishDay: function() {
+        return moment({ y: this.year, M: 7, d: 11 });
+    },
+    allSoulsDay: function() {
+        return moment({ y: this.year, M: 11, d: 2 });
+    },
+    dynastyDay: function() {
+        return moment({ y: this.year, M: 11, d: 15 });
+    },
+    walloonDay: function() {
+        return moment({ y: this.year, M: 9, d: 27 });
+    },
+    germanDay: function() {
+        return moment({ y: this.year, M: 11, d: 15 });
+    },
+    brusselsDay: function() {
+        return moment({ y: this.year, M: 5, d: 8 });
+    },
+    stNicholasDayBe: function() {
+        return moment({ y: this.year, M: 12, d: 6 });
+    },
+    stMaarten: function() {
+        return moment({ y: this.year, M: 11, d: 11 });
     },
     testTime: function() {
         return moment([this.year,5,5]);

@@ -125,7 +125,7 @@ var calendar = {
     mothersDayBe: function() {
         return moment({ y: this.year, M: 5, d: 10 });
     },
-    mothersDayAntwerp: function() {
+    mothersDayBeAntwerp: function() {
         return moment({ y: this.year, M: 8, d: 15 });
     },
     fathersDay: function() {
